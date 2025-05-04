@@ -1,25 +1,17 @@
-const routesData = [
-    {route: "Dhaka - Chattogram", time: "07:00 AM", bus: "Green Line"},
-    {route: "Dhaka - Sylhet", time: "08:00 AM", bus: "Soudia"},
-    {route: "Dhaka - Cox's Bazar", time: "09:00 AM", bus: "Shyamoli"},
-    {route: "Dhaka - Khulna", time: "10:00 AM", bus: "Hanif"},
-    {route: "Dhaka - Rajshahi", time: "11:00 AM", bus: "Eagle"},
-    {route: "Dhaka - Barisal", time: "12:00 PM", bus: "Shyamoli"},
-    {route: "Dhaka - Rangpur", time: "01:00 PM", bus: "Green Line"},
-    {route: "Dhaka - Bogura", time: "02:00 PM", bus: "Soudia"},
-    {route: "Dhaka - Mymensingh", time: "03:00 PM", bus: "Hanif"},
-    {route: "Dhaka - Pabna", time: "04:00 PM", bus: "Eagle"},
-    {route: "Dhaka - Jamalpur", time: "05:00 PM", bus: "Shyamoli"},
-    {route: "Dhaka - Kishoreganj", time: "06:00 PM", bus: "Green Line"},
-    {route: "Dhaka - Chandpur", time: "07:00 PM", bus: "Soudia"},
-    {route: "Dhaka - Faridpur", time: "08:00 PM", bus: "Hanif"},
-    {route: "Dhaka - Madaripur", time: "09:00 PM", bus: "Eagle"},
-    {route: "Dhaka - Manikganj", time: "10:00 PM", bus: "Shyamoli"},
-    {route: "Dhaka - Netrakona", time: "11:00 PM", bus: "Green Line"},
-    {route: "Dhaka - Sherpur", time: "12:00 AM", bus: "Soudia"}
-];
+async function getRoutesData(){
+    try {
+        const response = await fetch('routes.json');
+        const data = await response.json();
+        return data;
+    }
 
-function searchRoutes() {
+catch (error){
+    consssole.error("Failed to fetch routes data:", error);
+    return [];
+}
+}
+
+async function searchRoutes() {
     const from = document.getElementById("from-location").value;
     const to = document.getElementById("to-location").value;
 
@@ -36,6 +28,7 @@ function searchRoutes() {
         return;
     }
 
+    const routesData = await getRoutesData();
     const results = routesData.filter (result=>
         result.route.toLowerCase().split(" - ")[0].includes(from.toLowerCase()) && 
         result.route.toLowerCase().split(" - ")[1].includes(to.toLowerCase())

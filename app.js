@@ -1,3 +1,9 @@
+if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "login.html";
+}
+
+
+
 async function getRoutesData(){
     try {
         const response = await fetch('routes.json');
@@ -51,4 +57,9 @@ function displayResults(routes){
         item.textContent = `${finalRoute.route} | ${finalRoute.time} | ${finalRoute.bus}`;
         container.appendChild(item);
     });
+}
+
+function logout() {
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
 }

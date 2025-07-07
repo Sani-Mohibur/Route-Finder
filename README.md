@@ -23,14 +23,17 @@
    ```bash
    git clone https://github.com/Sani-Mohibur/Route-Finder.git
    ```
+
 2. Open the project folder and launch index.html in your browser:
 
    ```bash
    cd Route-Finder
    ```
+
 3. Or simply double-click the index.html file.
 
 ## 🔍 Usage
+
 - Enter your starting point and destination in the input fields.
 - Click on the Search button to display available routes.
 - The system will show matching bus routes, or an alert if no route is found.
